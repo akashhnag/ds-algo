@@ -19,7 +19,6 @@ class BST{
         else{
             searchTree(node,data);
             console.log(node);
-
         }
     }
 
@@ -36,6 +35,16 @@ class BST{
     inOrder(){
         let node=this.root;
         traverseInOrder(node);
+    }
+
+    preOrder(){
+        let node=this.root;
+        traversePreOrder(node);
+    }
+
+    postOrder(){
+        let node=this.root;
+        traversePostOrder(node);
     }
 
 }
@@ -99,6 +108,24 @@ function traverseInOrder(node){
     }
 }
 
+function traversePreOrder(node){
+    if(node!=null){
+        console.log(node.data);
+        traverseInOrder(node.left);
+        traverseInOrder(node.right);
+    }
+}
+
+function traversePostOrder(node){
+    if(node!=null){
+        traverseInOrder(node.left);
+        traverseInOrder(node.right);
+        console.log(node.data);
+    }
+}
+
+
+
 
 
 
@@ -110,4 +137,9 @@ for(let i=0;i<arr.length;i++){
 }
 
 //ob1.isPresent(10)
-ob1.inOrder()
+console.log('Inorder');
+ob1.inOrder();
+console.log('preorder');
+ob1.preOrder();
+console.log('postorder');
+ob1.postOrder();
