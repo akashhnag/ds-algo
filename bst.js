@@ -6,6 +6,7 @@ class Node{
     }
 }
 
+let nodeQueue=[];
 class BST{
     constructor(){
         this.root=null
@@ -18,7 +19,7 @@ class BST{
         }
         else{
             searchTree(node,data);
-            console.log(node);
+            //console.log(node);
         }
     }
 
@@ -45,6 +46,17 @@ class BST{
     postOrder(){
         let node=this.root;
         traversePostOrder(node);
+    }
+
+    levelOrder(){
+        let node=this.root;
+        if(node.left!=null && node.right!=null)
+        {
+            console.log(node.data);        
+            nodeQueue.push(node.left);
+            nodeQueue.push(node.right);
+        }            
+        traverselevelOrder(nodeQueue);
     }
 
 }
@@ -125,9 +137,37 @@ function traversePostOrder(node){
 }
 
 
-
-
-
+function traverselevelOrder(node)
+{
+    while(nodeQueue.length>0){        
+        if(node[0].left!=null && node[0].right!=null)
+        {
+            console.log(node[0].data);        
+            nodeQueue.push(node[0].left);
+            nodeQueue.push(node[0].right);
+        }
+        else if(node[0].left!=null)
+        {
+            console.log(node[0].data);        
+            nodeQueue.push(node[0].left);   
+        }
+        else if(node[0].right!=null)
+        {
+            console.log(node[0].data);        
+            nodeQueue.push(node[0].right);   
+        }
+        else{
+            console.log(node[0].data);            
+        }
+         nodeQueue.splice(0,1); 
+    }
+    
+    
+    // console.log('before',nodeQueue);
+   
+    //console.log('after',nodeQueue[0]);
+    
+}
 
 let arr=[8,3,1,6,4,7,10,14,13];
 let ob1=new BST();
@@ -137,9 +177,11 @@ for(let i=0;i<arr.length;i++){
 }
 
 //ob1.isPresent(10)
-console.log('Inorder');
-ob1.inOrder();
-console.log('preorder');
-ob1.preOrder();
-console.log('postorder');
-ob1.postOrder();
+// console.log('Inorder');
+// ob1.inOrder();
+// console.log('preorder');
+// ob1.preOrder();
+// console.log('postorder');
+// ob1.postOrder();
+
+ob1.levelOrder();
